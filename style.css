@@ -87,10 +87,22 @@ canvas {
 }
 
 .full-section {
-  background-color: pink;
   min-height: 100vh;
   width: 100%;
-  text-align: right;
+}
+
+.full-section h1 {
+  padding-top: 16vh;
+}
+
+.break-section {
+  display: grid;
+  justify-content: right;
+  text-align: center;
+}
+
+.next-spacer {
+  text-align: center;
 }
 
 .panel-sbvt,

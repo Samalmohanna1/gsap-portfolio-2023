@@ -1,5 +1,8 @@
 const canvas = document.querySelector(".main-canvas");
 const helloHeader = document.querySelector(".hello-header");
+const breakSection = document.querySelectorAll(".break-section")
+const spacer = document.querySelector('.next-spacer')
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -9,7 +12,7 @@ const frameCount = 180;
 const currentFrame = (index) =>
   `./intro-animation-optimized/(${(index + 1).toString()}).webp`;
 const images = [];
-let ball = { frame: 0 };
+const ball = { frame: 0 };
 
 for (let i = 0; i < frameCount; i++) {
   const img = new Image();
@@ -32,7 +35,6 @@ gsap.to(ball, {
     scrub: 1,
     pin: "canvas",
     end: "500%",
-    markers: true,
   },
   frame: frameCount - 1,
   snap: "frame",
@@ -49,7 +51,6 @@ gsap.fromTo(
       scrub: true,
       start: "10%",
       end: "40%",
-      markers: true,
     },
     onComplete: () => {
       gsap.to(".hello-header", { opacity: 0, display: 'none'});
@@ -57,7 +58,19 @@ gsap.fromTo(
   }
 );
 
-let sbvtSections = gsap.utils.toArray(".panel-sbvt");
+gsap.to(breakSection, {
+  scrollTrigger: {
+    trigger: breakSection,
+    scrub: 1,
+    pin: true,
+    end: "+=" + window.innerHeight / 2,
+  },
+  duration: 3,
+  x: - window.innerWidth * 1.1,
+  scale: 2.5
+})
+
+const sbvtSections = gsap.utils.toArray(".panel-sbvt");
 
 gsap.to(sbvtSections, {
   xPercent: -100 * (sbvtSections.length - 1),
@@ -69,12 +82,22 @@ gsap.to(sbvtSections, {
     scrub: 0.6,
     snap: 1 / (sbvtSections.length - 1),
     // base vertical scrolling on how wide the container is so it feels more natural.
-    end: "+=" + document.querySelector(".sbvt").offsetWidth,
-    markers: true,
+    end: "+=" + document.querySelector(".sbvt").offsetWidth
   },
 });
 
-let rcSections = gsap.utils.toArray(".panel-rc");
+gsap.to(spacer, {
+  scrollTrigger: {
+    trigger: spacer,
+    scrub: 1,
+    pin: true,
+    end: "+=" + window.innerHeight / 2,
+  },
+  duration: 3,
+  scale: 2.5,
+})
+
+const rcSections = gsap.utils.toArray(".panel-rc");
 
 gsap.to(rcSections, {
   xPercent: -100 * (rcSections.length - 1),
@@ -86,7 +109,6 @@ gsap.to(rcSections, {
     scrub: 0.6,
     snap: 1 / (rcSections.length - 1),
     // base vertical scrolling on how wide the container is so it feels more natural.
-    end: "+=" + document.querySelector(".rc").offsetWidth,
-    markers: true,
+    end: "+=" + document.querySelector(".rc").offsetWidth
   },
 });
