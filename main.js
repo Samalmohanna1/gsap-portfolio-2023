@@ -1,3 +1,19 @@
+let isMobile;
+
+if ("ontouchstart" in window) {
+  isMobile = true;
+} else {
+  isMobile = false;
+}
+
+if (isMobile) {
+  alert("This site is not mobile friendly, you are being redirected to a fallback site.")
+  window.location.href = "https://sam-almohanna.com";
+} else {
+  // window.location.href = "https://example.com/desktop";
+}
+
+
 const canvas = document.querySelector(".main-canvas");
 const helloHeader = document.querySelector(".hello-header");
 const breakSection = document.querySelectorAll(".break-section")
@@ -32,7 +48,7 @@ images[0].onload = render;
 
 gsap.to(ball, {
   scrollTrigger: {
-    scrub: 1,
+    scrub: 3,
     pin: "canvas",
     end: "500%",
   },
@@ -42,18 +58,17 @@ gsap.to(ball, {
   onUpdate: render,
 });
 
-gsap.fromTo(
-  ".hello-header",
+gsap.fromTo(helloHeader,
   { opacity: 0},
   {
     opacity: 1,
     scrollTrigger: {
-      scrub: true,
-      start: "10%",
-      end: "40%",
+      scrub: 1,
+      start: "2%",
+      end: "30%",
     },
     onComplete: () => {
-      gsap.to(".hello-header", { opacity: 0, display: 'none'});
+      gsap.to(helloHeader, { opacity: 0, display: 'none'});
     },
   }
 );
@@ -61,13 +76,12 @@ gsap.fromTo(
 gsap.to(breakSection, {
   scrollTrigger: {
     trigger: breakSection,
-    scrub: 1,
+    scrub: 4,
     pin: true,
-    end: "+=" + window.innerHeight / 2,
+    end: () => "+=" + window.innerHeight / 2,
   },
-  duration: 3,
-  x: - window.innerWidth * 1.1,
-  scale: 2.5
+  x: () => "+=" + (window.innerWidth * -1),
+  scale: 2
 })
 
 const sbvtSections = gsap.utils.toArray(".panel-sbvt");
@@ -89,12 +103,11 @@ gsap.to(sbvtSections, {
 gsap.to(spacer, {
   scrollTrigger: {
     trigger: spacer,
-    scrub: 1,
+    scrub: 2,
     pin: true,
-    end: "+=" + window.innerHeight / 2,
+    end: () => "+=" + window.innerHeight / 2,
   },
-  duration: 3,
-  scale: 2.5,
+  scale: 3,
 })
 
 const rcSections = gsap.utils.toArray(".panel-rc");

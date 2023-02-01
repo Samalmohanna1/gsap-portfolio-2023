@@ -49,12 +49,6 @@ canvas {
   font-size: 2rem;
 }
 
-.sections-base {
-  min-height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
-
 .about-section {
   background-color: rgb(255, 251, 240);
   background-image: radial-gradient(
@@ -92,7 +86,7 @@ canvas {
 }
 
 .full-section h1 {
-  padding-top: 16vh;
+  padding-top: 10vh;
 }
 
 .break-section {
@@ -126,12 +120,20 @@ canvas {
 
 .work-imgs {
   width: 100%;
-  max-width: 74rem;
+  max-width: 60rem;
 }
 
 .black-bg {
   background-color: #252422;
   color: white;
+  border-radius: 50%;
+  width: 36rem;
+  height: 36rem;
+  margin: 4rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn-primary {
