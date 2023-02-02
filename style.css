@@ -64,7 +64,7 @@ canvas {
     radial-gradient(at 42% 0%, rgba(248, 105, 53, 0.6) 0px, transparent 70%),
     radial-gradient(at 2% 65%, rgb(107, 102, 255) 0px, transparent 50%),
     radial-gradient(at 53% 68%, rgb(255, 251, 240) 0px, transparent 50%);
-  background-size: 200%;
+  background-size: 100%;
   /* animation: gradient 5s ease infinite; */
 }
 
@@ -91,8 +91,7 @@ canvas {
 
 .break-section {
   display: grid;
-  justify-content: right;
-  text-align: center;
+  justify-content: left;
 }
 
 .next-spacer {

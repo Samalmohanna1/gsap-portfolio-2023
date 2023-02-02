@@ -16,6 +16,7 @@ if (isMobile) {
 
 const canvas = document.querySelector(".main-canvas");
 const helloHeader = document.querySelector(".hello-header");
+const aboutContent = document.querySelector('.about-content')
 const breakSection = document.querySelectorAll(".break-section")
 const spacer = document.querySelector('.next-spacer')
 
@@ -73,14 +74,29 @@ gsap.fromTo(helloHeader,
   }
 );
 
-gsap.to(breakSection, {
+gsap.fromTo(aboutContent,
+  { scale: 0, opacity: 0},
+  {
+     scale: 1,
+     opacity: 1,
+    scrollTrigger: {
+      scrub: 2,
+      pin: '.about-section',
+      start: 'top',
+    },
+    // onComplete: () => {
+    //   gsap.to(aboutSection, { scale: 2});
+    // },
+  }
+);
+
+gsap.to('.break-content', {
   scrollTrigger: {
-    trigger: breakSection,
     scrub: 4,
-    pin: true,
-    end: () => "+=" + window.innerHeight / 2,
+    pin: breakSection,
+    end: () => "+=" + window.innerHeight,
   },
-  x: () => "+=" + (window.innerWidth * -1),
+  x: () => "+=" + (window.innerWidth),
   scale: 2
 })
 
@@ -90,8 +106,7 @@ gsap.to(sbvtSections, {
   xPercent: -100 * (sbvtSections.length - 1),
   ease: "none",
   scrollTrigger: {
-    trigger: ".sbvt",
-    pin: true,
+    pin: '.sbvt',
     start: "5%",
     scrub: 0.6,
     snap: 1 / (sbvtSections.length - 1),
@@ -116,8 +131,7 @@ gsap.to(rcSections, {
   xPercent: -100 * (rcSections.length - 1),
   ease: "none",
   scrollTrigger: {
-    trigger: ".rc",
-    pin: true,
+    pin: '.rc',
     start: "5%",
     scrub: 0.6,
     snap: 1 / (rcSections.length - 1),
